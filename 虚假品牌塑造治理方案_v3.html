@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>虚假品牌塑造治理方案 V3.0 — 京东合规治理部</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    background: #f4f6f9;
+    color: #1a1a2e;
+    line-height: 1.8;
+    font-size: 15px;
+  }
+  .cover {
+    background: linear-gradient(135deg, #c0392b 0%, #8e1414 60%, #2c0a0a 100%);
+    color: white;
+    padding: 60px 40px 50px;
+    text-align: center;
+  }
+  .cover .badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 20px;
+    padding: 4px 18px;
+    font-size: 12px;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+  }
+  .cover h1 { font-size: 32px; font-weight: 700; margin-bottom: 10px; letter-spacing: 1px; }
+  .cover .subtitle { font-size: 16px; opacity: 0.85; margin-bottom: 30px; }
+  .cover .meta { font-size: 13px; opacity: 0.65; }
+  .cover .meta span { margin: 0 12px; }
+
+  .container { max-width: 960px; margin: 0 auto; padding: 40px 24px; }
+
+  .toc {
+    background: white;
+    border-radius: 12px;
+    padding: 28px 32px;
+    margin-bottom: 32px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+  }
+  .toc h2 { font-size: 15px; color: #c0392b; margin-bottom: 14px; font-weight: 600; letter-spacing: 1px; }
+  .toc ol { padding-left: 20px; }
+  .toc li { margin: 7px 0; font-size: 14px; color: #444; }
+  .toc a { color: #c0392b; text-decoration: none; }
+  .toc a:hover { text-decoration: underline; }
+
+  .section {
+    background: white;
+    border-radius: 12px;
+    padding: 36px 40px;
+    margin-bottom: 28px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+  }
+  .section h2 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #c0392b;
+    border-left: 5px solid #c0392b;
+    padding-left: 14px;
+    margin-bottom: 24px;
+  }
+  .section h3 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #2c3e50;
+    margin: 26px 0 12px;
+    padding-bottom: 6px;
+    border-bottom: 1px dashed #e0e0e0;
+  }
+  .section h4 {
+    font-size: 14px;
+    font-weight: 600;
+    color: #555;
+    margin: 16px 0 8px;
+  }
+  p { margin-bottom: 12px; color: #333; }
+
+  .callout {
+    border-radius: 10px;
+    padding: 18px 22px;
+    margin: 18px 0;
+    font-size: 14px;
+    line-height: 1.75;
+  }
+  .callout.red { background: #fdf0f0; border-left: 4px solid #c0392b; }
+  .callout.blue { background: #eef4fd; border-left: 4px solid #2980b9; }
+  .callout.green { background: #edfaf1; border-left: 4px solid #27ae60; }
+  .callout.orange { background: #fef9ec; border-left: 4px solid #e67e22; }
+  .callout.gray { background: #f7f8fa; border-left: 4px solid #95a5a6; }
+  .callout.purple { background: #f5f0fb; border-left: 4px solid #8e44ad; }
+  .callout strong { display: block; margin-bottom: 6px; font-size: 15px; }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0;
+    font-size: 14px;
+  }
+  th {
+    background: #c0392b;
+    color: white;
+    padding: 11px 14px;
+    text-align: left;
+    font-weight: 600;
+  }
+  td { padding: 10px 14px; border-bottom: 1px solid #f0f0f0; vertical-align: top; }
+  tr:nth-child(even) td { background: #fafafa; }
+  tr:hover td { background: #fff5f5; }
+
+  .tag {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .tag.red { background: #fdecea; color: #c0392b; }
+  .tag.orange { background: #fef3e2; color: #e67e22; }
+  .tag.yellow { background: #fefbe8; color: #b7950b; }
+  .tag.green { background: #edfaf1; color: #1e8449; }
+  .tag.blue { background: #eaf2ff; color: #1a5276; }
+  .tag.gray { background: #f2f3f4; color: #555; }
+  .tag.purple { background: #f5f0fb; color: #6c3483; }
+
+  /* 三要素卡片 */
+  .three-elements {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
+    margin: 20px 0;
+  }
+  .element-card {
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+  }
+  .element-card.e1 { background: #fdf0f0; border: 2px solid #c0392b; }
+  .element-card.e2 { background: #fef9ec; border: 2px solid #e67e22; }
+  .element-card.e3 { background: #eef4fd; border: 2px solid #2980b9; }
+  .element-card .icon { font-size: 28px; margin-bottom: 8px; }
+  .element-card .etitle { font-weight: 700; font-size: 15px; margin-bottom: 6px; }
+  .element-card.e1 .etitle { color: #c0392b; }
+  .element-card.e2 .etitle { color: #e67e22; }
+  .element-card.e3 .etitle { color: #1a5276; }
+  .element-card .edesc { font-size: 13px; color: #555; line-height: 1.6; }
+  .element-card .etag { font-size: 11px; margin-top: 8px; display: inline-block; padding: 2px 8px; border-radius: 8px; }
+  .element-card.e1 .etag { background: #c0392b; color: white; }
+  .element-card.e2 .etag { background: #e67e22; color: white; }
+  .element-card.e3 .etag { background: #2980b9; color: white; }
+
+  /* 案例卡片 */
+  .case-card {
+    border-radius: 10px;
+    background: #f9f9f9;
+    border: 1px solid #e8e8e8;
+    padding: 22px 26px;
+    margin: 16px 0;
+  }
+  .case-card .case-title {
+    font-weight: 700;
+    font-size: 16px;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .case-card .case-row {
+    font-size: 14px;
+    margin: 6px 0;
+    color: #444;
+    display: flex;
+    gap: 8px;
+  }
+  .case-card .case-row .label {
+    color: #888;
+    width: 90px;
+    flex-shrink: 0;
+    font-size: 13px;
+  }
+  .verdict {
+    margin-top: 14px;
+    padding: 14px 18px;
+    border-radius: 8px;
+    font-size: 14px;
+  }
+  .verdict.yes { background: #fdf0f0; border-left: 3px solid #c0392b; }
+  .verdict.no { background: #edfaf1; border-left: 3px solid #27ae60; }
+  .verdict.other { background: #eef4fd; border-left: 3px solid #2980b9; }
+  .verdict strong { font-size: 15px; }
+
+  /* 处置级别 */
+  .level-card {
+    border-radius: 10px;
+    border: 1.5px solid;
+    padding: 22px 26px;
+    margin: 16px 0;
+  }
+  .level-card.s { border-color: #c0392b; background: #fff8f8; }
+  .level-card.a { border-color: #e67e22; background: #fffaf5; }
+  .level-card.b { border-color: #f1c40f; background: #fffef5; }
+  .level-card.c { border-color: #27ae60; background: #f5fff9; }
+  .level-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  .level-badge {
+    padding: 4px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 700;
+  }
+  .level-badge.s { background: #c0392b; color: white; }
+  .level-badge.a { background: #e67e22; color: white; }
+  .level-badge.b { background: #f1c40f; color: #333; }
+  .level-badge.c { background: #27ae60; color: white; }
+  .level-title { font-size: 16px; font-weight: 700; color: #2c3e50; }
+  .level-score { font-size: 12px; color: #888; margin-left: auto; }
+
+  /* 流程 */
+  .flow { margin: 16px 0; }
+  .flow-step {
+    background: #f4f6f9;
+    border-radius: 8px;
+    padding: 12px 18px;
+    font-size: 14px;
+    color: #333;
+  }
+  .flow-arrow {
+    text-align: center;
+    font-size: 18px;
+    color: #c0392b;
+    line-height: 1.6;
+    margin: 2px 0;
+  }
+  .flow-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin: 4px 0;
+  }
+
+  /* 比较 */
+  .compare-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 16px 0;
+  }
+  .compare-box {
+    border-radius: 10px;
+    padding: 20px;
+    font-size: 14px;
+  }
+  .compare-box.old { background: #eef4fd; border: 1.5px solid #2980b9; }
+  .compare-box.new { background: #fdf0f0; border: 1.5px solid #c0392b; }
+  .compare-box h4 { font-size: 15px; font-weight: 700; margin-bottom: 12px; }
+  .compare-box.old h4 { color: #1a5276; }
+  .compare-box.new h4 { color: #922b21; }
+  .compare-box ul { padding-left: 18px; }
+  .compare-box li { margin: 6px 0; color: #444; }
+
+  /* 警示框 */
+  .insight-box {
+    background: linear-gradient(135deg, #c0392b, #e74c3c);
+    color: white;
+    border-radius: 12px;
+    padding: 24px 28px;
+    margin: 20px 0;
+  }
+  .insight-box h3 { font-size: 18px; margin-bottom: 8px; }
+  .insight-box p { color: rgba(255,255,255,0.9); font-size: 14px; margin: 0; line-height: 1.75; }
+
+  .footer {
+    text-align: center;
+    padding: 30px;
+    color: #999;
+    font-size: 13px;
+  }
+
+  @media (max-width: 640px) {
+    .three-elements, .compare-grid, .flow-split { grid-template-columns: 1fr; }
+    .section { padding: 24px 20px; }
+    .cover { padding: 40px 20px; }
+    .cover h1 { font-size: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div class="badge">内部治理文件 · 保密 · V3.0</div>
+  <h1>虚假品牌塑造治理方案</h1>
+  <div class="subtitle">假大牌 · 假洋牌 · 品牌虚假溢价 合并专项治理</div>
+  <div class="meta">
+    <span>版本：V3.0</span>
+    <span>日期：2026年5月</span>
+    <span>部门：京东合规假货治理部</span>
+  </div>
+</div>
+
+<div class="container">
+
+<!-- 目录 -->
+<div class="toc">
+  <h2>目 录</h2>
+  <ol>
+    <li><a href="#s1">场景核心理解与定义</a></li>
+    <li><a href="#s2">场景三要素：缺一不可</a></li>
+    <li><a href="#s3">典型案例判定（含本田制药详析）</a></li>
+    <li><a href="#s4">与虚假宣传的本质区别</a></li>
+    <li><a href="#s5">识别规则与评分模型</a></li>
+    <li><a href="#s6">风险分层与处置方案</a></li>
+    <li><a href="#s7">执行流程</a></li>
+    <li><a href="#s8">场景协同机制</a></li>
+    <li><a href="#s9">效果衡量指标</a></li>
+  </ol>
+</div>
+
+<!-- 第一章：核心定义 -->
+<div class="section" id="s1">
+  <h2>一、场景核心理解与定义</h2>
+
+  <div class="insight-box">
+    <h3>一句话描述这个场景</h3>
+    <p>商家打造一个没有真实品牌内涵的"空壳品牌"，通过高端包装和高价定价，让消费者误以为买到了大牌或洋牌，为此支付远超商品本身价值的溢价。</p>
+  </div>
+
+  <h3>场景正式命名</h3>
+  <p>将"假大牌"与"假洋牌"合并，统一命名为：</p>
+  <div class="callout red">
+    <strong>虚假品牌塑造（Fake Brand Fabrication，简称 FBF）</strong>
+    涵盖仿国内高端品牌（假大牌）和仿国际品牌（假洋牌）两类子场景。
+  </div>
+
+  <h3>什么样的品牌是"空壳品牌"</h3>
+  <p>真实品牌与空壳品牌的根本区别，在于是否有<strong>真实的品牌价值基础</strong>：</p>
+  <table>
+    <tr><th>维度</th><th>真实品牌（不干预）</th><th>空壳品牌（本场景治理对象）</th></tr>
+    <tr>
+      <td>产品线</td>
+      <td>有自有研发、自主配方或工艺，能解释差异化</td>
+      <td>纯 OEM / 白牌贴标，无自有产品线，换个牌子就是另一家</td>
+    </tr>
+    <tr>
+      <td>品牌历史</td>
+      <td>品牌故事可核实，有积累</td>
+      <td>品牌注册时间极短，历史故事虚构或无法核实</td>
+    </tr>
+    <tr>
+      <td>价格支撑</td>
+      <td>高价有依据：专利成分、稀缺原料、工艺认证等</td>
+      <td>高价无依据：靠包装和名字营造高端感，无实质支撑</td>
+    </tr>
+    <tr>
+      <td>品牌来源</td>
+      <td>国内品牌如实标注，进口品牌有真实资质</td>
+      <td>用外文名、欧式包装、"源自德国/法国"等制造进口联想</td>
+    </tr>
+  </table>
+</div>
+
+<!-- 第二章：三要素 -->
+<div class="section" id="s2">
+  <h2>二、场景三要素：缺一不可</h2>
+
+  <div class="three-elements">
+    <div class="element-card e1">
+      <div class="icon">💰</div>
+      <div class="etitle">价格虚高溢价</div>
+      <div class="edesc">定价明显超出同类商品合理区间，溢价来自虚假品牌感，而非真实产品差异化</div>
+      <div class="etag">核心铆钉</div>
+    </div>
+    <div class="element-card e2">
+      <div class="icon">🫙</div>
+      <div class="etitle">品牌空壳化</div>
+      <div class="edesc">无真实产品线、无自有研发、无可核实品牌背书，是一个没有实质内涵的包装外壳</div>
+      <div class="etag">核心信号</div>
+    </div>
+    <div class="element-card e3">
+      <div class="icon">🎭</div>
+      <div class="etitle">外观误导消费者</div>
+      <div class="edesc">通过名称、包装、故事制造"大牌感"或"洋牌感"，让消费者以为在买有价值的品牌</div>
+      <div class="etag">必要条件</div>
+    </div>
+  </div>
+
+  <div class="callout orange">
+    <strong>要素缺失时如何处理？</strong>
+    • 缺少"价格虚高"→ 消费者未被多收钱，本场景治理优先级极低，观察记录即可<br>
+    • 缺少"品牌空壳化"→ 可能是真实新锐品牌的高端定位，不应干预<br>
+    • 缺少"外观误导"→ 可能只是贵，不构成品牌欺骗，看具体情况
+  </div>
+
+  <h3>价格溢价的量化基准</h3>
+  <table>
+    <tr><th>溢价倍数（售价 ÷ 同类均价）</th><th>含义</th><th>治理级别参考</th></tr>
+    <tr><td>＜ 1.5x</td><td>无明显溢价</td><td>本场景不触发</td></tr>
+    <tr><td>1.5x ～ 2x</td><td>轻度溢价</td><td>C级观察</td></tr>
+    <tr><td>2x ～ 5x</td><td>中高度溢价</td><td>B / A级</td></tr>
+    <tr><td>≥ 5x</td><td>严重溢价</td><td>S级</td></tr>
+  </table>
+  <p style="font-size:13px;color:#888;">同类均价 = 同品类、同规格、同功能商品在京东平台的销量加权均价，每月更新。</p>
+</div>
+
+<!-- 第三章：案例 -->
+<div class="section" id="s3">
+  <h2>三、典型案例判定</h2>
+
+  <!-- 案例1：本田制药 低价 -->
+  <div class="case-card">
+    <div class="case-title">
+      <span class="tag blue">案例 1</span>
+      本田制药 — 国内品牌，价格不高
+    </div>
+    <div class="case-row"><span class="label">品牌情况</span>国内注册品牌，名称借用"本田"，与日本本田汽车无任何关联</div>
+    <div class="case-row"><span class="label">产品情况</span>OEM代工产品</div>
+    <div class="case-row"><span class="label">定价</span>同类保健品均价80元，该品牌定价 <strong>85元</strong>（无明显溢价）</div>
+
+    <div class="verdict no">
+      <strong>✅ 判定：不触发虚假品牌塑造</strong>
+      价格无溢价，消费者没有因品牌误导而多付钱，本场景三要素中"价格虚高"不成立，治理优先级极低。<br><br>
+      <strong>但需注意：</strong>若"本田"与日本本田汽车构成商标混淆，可转<span class="tag blue">知识产权/商标侵权</span>场景处理，与本场景无关。
+    </div>
+  </div>
+
+  <!-- 案例2：本田制药 高价 -->
+  <div class="case-card">
+    <div class="case-title">
+      <span class="tag orange">案例 2</span>
+      本田制药 — 同品牌，但定价很高
+    </div>
+    <div class="case-row"><span class="label">品牌情况</span>同上，国内品牌借用"本田"名称</div>
+    <div class="case-row"><span class="label">包装</span>使用日文、日系设计风格，品牌详情页暗示"日本技术"</div>
+    <div class="case-row"><span class="label">定价</span>同类保健品均价80元，该品牌定价 <strong>480元（6倍溢价）</strong></div>
+    <div class="case-row"><span class="label">产品线</span>无自有研发，纯OEM代工</div>
+
+    <div class="verdict yes">
+      <strong>🔴 判定：触发虚假品牌塑造，S级</strong>
+      三要素全部成立：① 6倍溢价（价格虚高）② 纯OEM无产品线（品牌空壳化）③ 名称+日系包装制造进口联想（外观误导）。<br><br>
+      <strong>治理逻辑：</strong>消费者为"本田=日本品牌"的错误认知多花了400元，这是本场景要解决的核心伤害。
+    </div>
+  </div>
+
+  <!-- 关键结论 -->
+  <div class="callout purple">
+    <strong>案例1 vs 案例2 的关键启示</strong>
+    同一个品牌名称"本田制药"，价格不同，结论完全不同。<br>
+    这证明了：<strong>不是品牌名称本身决定是否违规，而是价格溢价+品牌空壳+外观误导三者共同决定。</strong><br>
+    价格是判断消费者是否受到实质损害的核心铆钉。
+  </div>
+
+  <!-- 案例3：德国品质 -->
+  <div class="case-card">
+    <div class="case-title">
+      <span class="tag orange">案例 3</span>
+      某品牌宣称"德国品质"
+    </div>
+    <div class="case-row"><span class="label">品牌情况</span>国内品牌，在国内生产，无德国工厂或德国机构授权</div>
+    <div class="case-row"><span class="label">宣传语</span>"德国品质认证"、"源自德国工艺"</div>
+
+    <p style="margin-top:14px;font-size:14px;">这是一个<strong>跨越两个场景的典型灰色地带</strong>，判断取决于具体表述和价格：</p>
+    <table>
+      <tr><th>具体表述</th><th>定价</th><th>判定场景</th></tr>
+      <tr>
+        <td>"德国制造" / "德国原装进口"，但实际国内产</td>
+        <td>任意价格</td>
+        <td><span class="tag blue">虚假宣传</span>（具体可核实的产地假陈述）</td>
+      </tr>
+      <tr>
+        <td>"获得德国TÜV认证"，但实际无认证</td>
+        <td>任意价格</td>
+        <td><span class="tag blue">虚假宣传</span>（可核实的认证假陈述）</td>
+      </tr>
+      <tr>
+        <td>"德国品质"（模糊表述，无具体假陈述）+ 高溢价 + 外文品牌名 + 欧式包装</td>
+        <td>≥ 2x均价</td>
+        <td><span class="tag red">虚假品牌塑造</span>（整体氛围误导+价格溢价）</td>
+      </tr>
+      <tr>
+        <td>"德国品质"（模糊表述）+ 价格正常</td>
+        <td>≤ 1.5x均价</td>
+        <td><span class="tag gray">低优先级观察</span>（无实质消费者损害）</td>
+      </tr>
+    </table>
+
+    <div class="verdict other">
+      <strong>💡 判定原则</strong>
+      有具体假陈述 → 先走虚假宣传核查。无具体假话但靠整体氛围+高溢价误导 → 走虚假品牌塑造。两者同时存在 → 双重标记，取较重处置。
+    </div>
+  </div>
+
+  <!-- 案例4：真正新锐品牌 -->
+  <div class="case-card">
+    <div class="case-title">
+      <span class="tag green">案例 4（对照）</span>
+      某国内新锐美妆品牌，定价高但有真实支撑
+    </div>
+    <div class="case-row"><span class="label">品牌情况</span>国内品牌，成立3年，有真实研发团队、专利成分、媒体报道</div>
+    <div class="case-row"><span class="label">产品线</span>有自有配方研发，部分成分申请了专利</div>
+    <div class="case-row"><span class="label">定价</span>面霜580元（高于均价约2.5倍），但产品差异化明确</div>
+
+    <div class="verdict no">
+      <strong>✅ 判定：不触发，属于真实品牌溢价</strong>
+      "品牌空壳化"不成立：有真实产品线和研发背书，价格溢价有合理依据。<br>
+      平台不干预真实的品牌溢价定价权。
+    </div>
+  </div>
+</div>
+
+<!-- 第四章：与虚假宣传的区别 -->
+<div class="section" id="s4">
+  <h2>四、与虚假宣传的本质区别</h2>
+
+  <div class="compare-grid">
+    <div class="compare-box old">
+      <h4>🔵 虚假宣传（现有场景）</h4>
+      <ul>
+        <li>针对<strong>商品属性</strong>的虚假陈述</li>
+        <li>有<strong>具体可逐一核实</strong>的假话</li>
+        <li>成分、功效、认证、产地事实不符</li>
+        <li>找到那条假话就命中</li>
+        <li>价格高低不是判定条件</li>
+        <li>核心问题：<br><strong>买到的东西和描述不一样</strong></li>
+      </ul>
+    </div>
+    <div class="compare-box new">
+      <h4>🔴 虚假品牌塑造（新场景）</h4>
+      <ul>
+        <li>针对<strong>品牌身份</strong>的整体性虚假营造</li>
+        <li>不一定有单条假话，靠<strong>整体氛围</strong>误导</li>
+        <li>品牌空壳化 + 外观包装误导</li>
+        <li>综合多维信号打分判断</li>
+        <li><strong>价格虚高是核心必要条件</strong></li>
+        <li>核心问题：<br><strong>以为买的是大牌，多付了冤枉钱</strong></li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>一句话判断路径</h3>
+  <div class="callout blue">
+    先问：<strong>有没有具体的、可核实的虚假事实陈述？</strong>（成分/功效/产地/认证）<br>
+    → 有 → <strong>虚假宣传</strong>，同时检查是否叠加品牌溢价<br>
+    → 没有，但整体形象+高价让消费者误认为是大牌 → <strong>虚假品牌塑造</strong>
+  </div>
+
+  <h3>两场景判定矩阵</h3>
+  <table>
+    <tr><th>情形</th><th>虚假宣传</th><th>虚假品牌塑造</th><th>处置原则</th></tr>
+    <tr><td>仅有成分/功效/认证不实</td><td><span class="tag blue">✅</span></td><td><span class="tag gray">❌</span></td><td>走虚假宣传</td></tr>
+    <tr><td>仅有品牌形象虚假+价格溢价</td><td><span class="tag gray">❌</span></td><td><span class="tag red">✅</span></td><td>走本场景</td></tr>
+    <tr><td>两者同时存在</td><td><span class="tag blue">✅</span></td><td><span class="tag red">✅</span></td><td>双重标记，取较重处置叠加执行</td></tr>
+    <tr><td>"德国品质"+具体认证造假</td><td><span class="tag blue">✅</span></td><td>视溢价</td><td>虚假宣传优先，叠加溢价检查</td></tr>
+    <tr><td>"德国品质"+无具体假话+高溢价</td><td><span class="tag gray">❌</span></td><td><span class="tag red">✅</span></td><td>走本场景</td></tr>
+    <tr><td>涉及商标侵权</td><td>视情况</td><td><span class="tag red">✅</span></td><td>知产场景优先，叠加本场景</td></tr>
+    <tr><td>本田制药，低价无溢价</td><td><span class="tag gray">❌</span></td><td><span class="tag gray">❌</span></td><td>转知产场景（若商标混淆）</td></tr>
+  </table>
+</div>
+
+<!-- 第五章：识别 -->
+<div class="section" id="s5">
+  <h2>五、识别规则与评分模型</h2>
+
+  <h3>五维加权评分模型</h3>
+  <table>
+    <tr><th>维度</th><th>权重</th><th>说明</th></tr>
+    <tr><td>💰 价格溢价</td><td><strong>30%（最高）</strong></td><td>核心铆钉，无溢价则整体评分大幅降低</td></tr>
+    <tr><td>🫙 品牌实体性</td><td><strong>25%（新增）</strong></td><td>有无真实产品线、自有研发、可核实品牌背书</td></tr>
+    <tr><td>🏷️ 品牌名称/视觉</td><td>20%</td><td>与知名品牌的相似度、外文名真实性、包装仿冒程度</td></tr>
+    <tr><td>📖 品牌故事真实性</td><td>15%</td><td>来源地、历史、荣誉的可核实程度</td></tr>
+    <tr><td>💬 用户反馈</td><td>10%</td><td>差评/申诉中品牌误导相关投诉量</td></tr>
+  </table>
+
+  <h4>💰 价格溢价维度（权重30%）</h4>
+  <table>
+    <tr><th>评分</th><th>判定标准</th></tr>
+    <tr><td><span class="tag red">80分 高风险</span></td><td>售价 ≥ 同类均价 × 5倍，且无可信差异化依据</td></tr>
+    <tr><td><span class="tag orange">50分 中风险</span></td><td>售价介于同类均价 × 2 ～ 5倍</td></tr>
+    <tr><td><span class="tag yellow">20分 低风险</span></td><td>售价介于同类均价 × 1.5 ～ 2倍</td></tr>
+    <tr><td><span class="tag green">0分</span></td><td>售价 &lt; 同类均价 × 1.5倍（不触发）</td></tr>
+  </table>
+
+  <h4>🫙 品牌实体性维度（权重25%，新增）</h4>
+  <table>
+    <tr><th>评分</th><th>判定标准</th></tr>
+    <tr><td><span class="tag red">80分 高风险</span></td><td>无任何自有产品线，全部 OEM / 白牌贴标，且无自有专利/配方</td></tr>
+    <tr><td><span class="tag red">80分 高风险</span></td><td>品牌注册时间 &lt; 1年，且无历史背书记录</td></tr>
+    <tr><td><span class="tag orange">50分 中风险</span></td><td>有少量自有产品，但核心 SKU 均为代工，无可核实研发投入</td></tr>
+    <tr><td><span class="tag yellow">20分 低风险</span></td><td>有一定自有产品线，但品牌故事存在部分夸大</td></tr>
+    <tr><td><span class="tag green">0分</span></td><td>有充分自有研发、专利、品牌历史可核实</td></tr>
+  </table>
+
+  <h4>🏷️ 品牌名称/视觉维度（权重20%）</h4>
+  <table>
+    <tr><th>评分</th><th>判定标准</th></tr>
+    <tr><td><span class="tag red">80分 高风险</span></td><td>与知名品牌名称字形/发音相似度 ≥ 70%</td></tr>
+    <tr><td><span class="tag red">80分 高风险</span></td><td>主图/包装与知名品牌视觉相似度 ≥ 60%（AI图像比对）</td></tr>
+    <tr><td><span class="tag red">80分 高风险</span></td><td>标注"Made in France/Germany/Japan"等但实际国内产</td></tr>
+    <tr><td><span class="tag orange">50分 中风险</span></td><td>纯外文品牌名，无任何可核实的海外注册记录</td></tr>
+    <tr><td><span class="tag yellow">20分 低风险</span></td><td>整体调性借鉴国际大牌，但无直接仿冒</td></tr>
+  </table>
+
+  <h4>📖 品牌故事维度（权重15%）</h4>
+  <table>
+    <tr><th>评分</th><th>判定标准</th></tr>
+    <tr><td><span class="tag red">80分 高风险</span></td><td>声称"创立于欧洲/日本XX年"但无任何可核实依据</td></tr>
+    <tr><td><span class="tag red">80分 高风险</span></td><td>宣称获得国际品牌授权/合作，无法提供授权文件</td></tr>
+    <tr><td><span class="tag orange">50分 中风险</span></td><td>模糊表述"源自欧洲工艺传承"等，无具体可查信息</td></tr>
+  </table>
+
+  <h4>💬 用户反馈维度（权重10%）</h4>
+  <table>
+    <tr><th>评分</th><th>判定标准</th></tr>
+    <tr><td><span class="tag red">80分 高风险</span></td><td>差评含"以为是大牌/洋牌"、"价格欺骗"等语义 ≥ 15条/月</td></tr>
+    <tr><td><span class="tag red">80分 高风险</span></td><td>因品牌误导退货申诉成立率 ≥ 30%</td></tr>
+    <tr><td><span class="tag orange">50分 中风险</span></td><td>问答区频繁出现"这是什么牌子"、"是进口的吗"等疑问</td></tr>
+  </table>
+
+  <h3>综合评分分级</h3>
+  <table>
+    <tr><th>综合评分</th><th>风险等级</th><th>标签</th></tr>
+    <tr><td>≥ 75分</td><td>严重</td><td><span class="tag red">🔴 S级 — 虚假品牌塑造</span></td></tr>
+    <tr><td>55 ～ 74分</td><td>较重</td><td><span class="tag orange">🟠 A级 — 疑似品牌误导</span></td></tr>
+    <tr><td>35 ～ 54分</td><td>中等</td><td><span class="tag yellow">🟡 B级 — 品牌包装待规范</span></td></tr>
+    <tr><td>&lt; 35分</td><td>轻微/不触发</td><td><span class="tag green">🟢 C级观察 / 不触发</span></td></tr>
+  </table>
+</div>
+
+<!-- 第六章：处置 -->
+<div class="section" id="s6">
+  <h2>六、风险分层处置方案</h2>
+
+  <div class="callout red">
+    <strong>治理总原则：不下架，让价格回归真实，保护消费者不被虚假溢价欺骗</strong>
+    核心逻辑：打压自然流量 + 允许付费广告 = 逼迫商家以真实价格竞争市场。<br>
+    商家若仍想获得流量，只能通过付费投放，且需通过品牌真实性审核。自然流量"免费红利"消失后，高溢价难以为继，价格自然回归。
+  </div>
+
+  <!-- S级 -->
+  <div class="level-card s">
+    <div class="level-header">
+      <div class="level-badge s">S 级</div>
+      <div class="level-title">严重 · 即时干预</div>
+      <div class="level-score">综合评分 ≥ 75分</div>
+    </div>
+    <table>
+      <tr><th>措施类型</th><th>具体内容</th></tr>
+      <tr><td>自然流量</td><td>搜索流量 + 算法推荐流量<strong>全部清零</strong></td></tr>
+      <tr><td>付费广告</td><td>允许投放，广告素材须通过<strong>品牌真实性专项审核</strong>后上线</td></tr>
+      <tr><td>页面干预</td><td>商品详情页顶部展示醒目标识："该商品存在品牌误导风险，建议对比同类商品价格后购买"</td></tr>
+      <tr><td>下单拦截</td><td>消费者下单前弹窗："该商品价格高于同类均价 X 倍，请理性消费"</td></tr>
+      <tr><td>商家通知</td><td>发送 S 级违规通知，要求 <strong>7 天内完成整改</strong></td></tr>
+      <tr><td>消费者保护</td><td>开放"品牌误导"专项维权通道，平台协助退款协调</td></tr>
+      <tr><td>未整改升级</td><td>7 天未整改 → 商家账号降级，全店商品流量受连带影响</td></tr>
+      <tr><td>知产交叉</td><td>涉嫌商标侵权 → 同步转知识产权场景，可触发下架</td></tr>
+      <tr><td>复查周期</td><td>7 天后强制重新评分</td></tr>
+    </table>
+  </div>
+
+  <!-- A级 -->
+  <div class="level-card a">
+    <div class="level-header">
+      <div class="level-badge a">A 级</div>
+      <div class="level-title">较重 · 中度限制</div>
+      <div class="level-score">综合评分 55 ～ 74分</div>
+    </div>
+    <table>
+      <tr><th>措施类型</th><th>具体内容</th></tr>
+      <tr><td>自然流量</td><td>搜索排名下降 <strong>50%</strong></td></tr>
+      <tr><td>推荐流量</td><td>猜你喜欢、首页推荐等算法场景<strong>全部停止</strong></td></tr>
+      <tr><td>付费广告</td><td>允许投放，需额外提交品牌真实性证明材料</td></tr>
+      <tr><td>强制披露</td><td>商品页展示："本品牌为国内自主品牌，与国际知名品牌无关联"（如适用）</td></tr>
+      <tr><td>品牌标签</td><td>商品列表页品牌名旁增加 <span class="tag gray">自有品牌</span> 标签</td></tr>
+      <tr><td>下单提示</td><td>下单前展示同类商品均价对比信息</td></tr>
+      <tr><td>申诉窗口</td><td>给予 15 天申诉期，可提交完整品牌资质材料</td></tr>
+      <tr><td>复查周期</td><td>15 天后重新评分</td></tr>
+    </table>
+  </div>
+
+  <!-- B级 -->
+  <div class="level-card b">
+    <div class="level-header">
+      <div class="level-badge b">B 级</div>
+      <div class="level-title">中等 · 轻度限制</div>
+      <div class="level-score">综合评分 35 ～ 54分</div>
+    </div>
+    <table>
+      <tr><th>措施类型</th><th>具体内容</th></tr>
+      <tr><td>自然流量</td><td>搜索排名下降 <strong>20%～30%</strong></td></tr>
+      <tr><td>推荐流量</td><td>推荐场景流量减少 <strong>30%</strong></td></tr>
+      <tr><td>付费广告</td><td>正常投放，广告素材需标注真实品牌来源地</td></tr>
+      <tr><td>价格提示</td><td>商品页展示"同类商品参考价：约 XX 元"</td></tr>
+      <tr><td>商家引导</td><td>引导商家补充品牌商标证、产地证明、研发背书等资质</td></tr>
+      <tr><td>申诉窗口</td><td>7 天申诉期</td></tr>
+      <tr><td>复查周期</td><td>30 天后重新评分</td></tr>
+    </table>
+  </div>
+
+  <!-- C级 -->
+  <div class="level-card c">
+    <div class="level-header">
+      <div class="level-badge c">C 级</div>
+      <div class="level-title">轻微 · 观察引导</div>
+      <div class="level-score">综合评分 &lt; 35分</div>
+    </div>
+    <table>
+      <tr><th>措施类型</th><th>具体内容</th></tr>
+      <tr><td>流量影响</td><td><strong>无</strong></td></tr>
+      <tr><td>商家提醒</td><td>发送"品牌信息规范建议"，提示存在的风险信号</td></tr>
+      <tr><td>信息引导</td><td>引导商家主动补全品牌资质信息</td></tr>
+      <tr><td>复查周期</td><td>30 天内持续监测，无改善升级至 B 级</td></tr>
+    </table>
+  </div>
+
+  <h3>整改验收标准（S / A 级）</h3>
+  <table>
+    <tr><th>整改项</th><th>验收标准</th></tr>
+    <tr><td>价格调整</td><td>售价调至同类均价 ≤ 3倍，或提交充分的产品差异化证明（专利/认证/原料说明）</td></tr>
+    <tr><td>品牌实体性</td><td>提供自有产品线证明（自有配方/专利/研发资质）或真实 OEM 合同+产品差异化说明</td></tr>
+    <tr><td>品牌名称/包装</td><td>去除与知名品牌相似的仿冒元素，或提供合法授权文件</td></tr>
+    <tr><td>虚假标注</td><td>去除虚假产地标注、虚假认证标志、虚假奖项</td></tr>
+    <tr><td>信息透明</td><td>主动展示品牌真实信息（国内品牌/注册时间/注册地）</td></tr>
+  </table>
+</div>
+
+<!-- 第七章：流程 -->
+<div class="section" id="s7">
+  <h2>七、执行流程</h2>
+
+  <h3>日常自动化巡检流程</h3>
+  <div class="flow">
+    <div class="flow-step">每日自动化扫描全量在售商品</div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-step">五维信号采集：价格溢价计算 / 品牌实体性核查 / 图像相似度比对 / 文本语义分析 / 用户评价挖掘</div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-step">综合评分计算 → 自动分级（S / A / B / C）</div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-step">生成处置指令 → 系统自动执行流量调控</div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-step">通知商家 → 进入申诉 / 整改窗口</div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-step">按周期复查 → 更新评分与处置状态</div>
+  </div>
+
+  <h3>消费者投诉触发流程</h3>
+  <div class="flow">
+    <div class="flow-step">消费者投诉"品牌误导 / 价格欺骗"</div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-step">人工初审（24小时内）：判断是否属于虚假品牌塑造</div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-split">
+      <div class="flow-step" style="background:#fdf0f0;border-left:3px solid #c0392b">属于 → 触发最高优先级重新评分<br>申诉成立则协助消费者退款协调</div>
+      <div class="flow-step" style="background:#eef4fd;border-left:3px solid #2980b9">不属于 → 转虚假宣传 / 其他场景处理</div>
+    </div>
+  </div>
+</div>
+
+<!-- 第八章：协同 -->
+<div class="section" id="s8">
+  <h2>八、场景协同机制</h2>
+
+  <div class="callout blue">
+    <strong>双向移交规则</strong>
+    • 本场景核查中发现具体虚假陈述（成分/认证/产地）→ 自动推送虚假宣传团队<br>
+    • 虚假宣传核查中发现品牌整体存在溢价+仿冒 → 同步触发本场景评分<br>
+    • 两场景均命中 → 各自独立标记，处置措施取<strong>较重叠加执行</strong><br>
+    • 本田制药类品牌（低价+商标混淆）→ 转知识产权场景，与本场景无关
+  </div>
+</div>
+
+<!-- 第九章：指标 -->
+<div class="section" id="s9">
+  <h2>九、效果衡量指标</h2>
+
+  <table>
+    <tr><th>指标名称</th><th>目标值</th><th>监测频率</th></tr>
+    <tr><td>虚假品牌塑造商品识别覆盖率</td><td>≥ 90%</td><td>月度</td></tr>
+    <tr><td>S/A级商品价格回归率（整改后售价下降至合理区间）</td><td>≥ 60%</td><td>季度</td></tr>
+    <tr><td>因品牌误导发起的消费者投诉量</td><td>环比下降 30%</td><td>季度</td></tr>
+    <tr><td>商家整改合规率（收到通知后完成整改的比例）</td><td>≥ 70%</td><td>月度</td></tr>
+    <tr><td>误判率（正常商品被误判违规）</td><td>≤ 5%</td><td>月度</td></tr>
+    <tr><td>消费者退款协调成功率</td><td>≥ 80%</td><td>月度</td></tr>
+  </table>
+</div>
+
+</div><!-- /container -->
+
+<div class="footer">
+  京东合规假货治理部 · 虚假品牌塑造专项 · 内部文件 · V3.0 · 2026年5月
+</div>
+
+</body>
+</html>
