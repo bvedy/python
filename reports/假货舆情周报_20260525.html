@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>京东假货舆情周报 — 2026年第21周（5月25日）</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+    background: #f0f2f5; color: #1a1a2e; font-size: 15px; line-height: 1.8;
+  }
+  .header {
+    background: linear-gradient(135deg,#1a237e 0%,#283593 60%,#1565c0 100%);
+    color: white; padding: 40px 48px 36px;
+  }
+  .header-top { display:flex; align-items:flex-start; justify-content:space-between; flex-wrap:wrap; gap:16px; }
+  .header-logo { font-size:13px; opacity:.7; letter-spacing:2px; margin-bottom:12px; }
+  .header h1 { font-size:26px; font-weight:700; margin-bottom:6px; }
+  .header .subtitle { font-size:14px; opacity:.8; }
+  .header-meta { text-align:right; font-size:13px; opacity:.75; line-height:1.9; }
+  .header-meta strong { opacity:1; font-size:14px; }
+
+  .summary-bar {
+    background:white; padding:20px 48px; border-bottom:1px solid #e8eaf0;
+    display:flex; gap:40px; flex-wrap:wrap; align-items:center;
+  }
+  .summary-item { text-align:center; }
+  .summary-item .val { font-size:28px; font-weight:700; line-height:1.2; }
+  .val.red { color:#c62828; } .val.orange { color:#e65100; }
+  .val.green { color:#1b5e20; } .val.blue { color:#0d47a1; }
+  .summary-item .lbl { font-size:12px; color:#888; margin-top:2px; }
+
+  /* 大促横幅 */
+  .promo-banner {
+    background: linear-gradient(90deg,#e53935,#ff6f00);
+    color:white; text-align:center; padding:10px 20px; font-size:14px; font-weight:600;
+    letter-spacing:1px;
+  }
+
+  .container { max-width:1020px; margin:0 auto; padding:32px 24px; }
+  .card { background:white; border-radius:12px; padding:32px 36px; margin-bottom:24px; box-shadow:0 1px 8px rgba(0,0,0,.07); }
+  .card h2 { font-size:18px; font-weight:700; color:#1a237e; border-left:5px solid #1a237e; padding-left:14px; margin-bottom:22px; }
+  .card h3 { font-size:15px; font-weight:600; color:#2c3e50; margin:22px 0 10px; padding-bottom:5px; border-bottom:1px dashed #e0e0e0; }
+  p { margin-bottom:12px; color:#333; }
+
+  /* 事件 */
+  .event-list { display:flex; flex-direction:column; gap:14px; margin:8px 0; }
+  .event { border-radius:10px; padding:16px 20px; border-left:4px solid; font-size:14px; }
+  .event.high { border-color:#c62828; background:#fff5f5; }
+  .event.mid  { border-color:#e65100; background:#fff8f0; }
+  .event.low  { border-color:#1565c0; background:#f0f4ff; }
+  .event-header { display:flex; align-items:center; gap:10px; margin-bottom:6px; flex-wrap:wrap; }
+  .event-title { font-weight:700; font-size:15px; }
+  .event-body { color:#444; line-height:1.75; }
+  .event-footer { margin-top:8px; font-size:12px; color:#888; }
+
+  .tag { display:inline-block; padding:2px 9px; border-radius:10px; font-size:11px; font-weight:600; }
+  .tag.red    { background:#fdecea; color:#c62828; }
+  .tag.orange { background:#fbe9e7; color:#bf360c; }
+  .tag.blue   { background:#e3f2fd; color:#0d47a1; }
+  .tag.green  { background:#e8f5e9; color:#1b5e20; }
+  .tag.gray   { background:#f5f5f5; color:#555; }
+  .tag.purple { background:#f3e5f5; color:#6a1b9a; }
+  .tag.yellow { background:#fffde7; color:#f57f17; }
+
+  .trend-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:12px 0; }
+  .trend-box { border-radius:10px; padding:18px 20px; font-size:14px; }
+  .trend-box.up   { background:#fff5f5; border:1.5px solid #ef9a9a; }
+  .trend-box.down { background:#e8f5e9; border:1.5px solid #a5d6a7; }
+  .trend-box h4 { font-size:14px; font-weight:700; margin-bottom:8px; }
+  .trend-box.up h4 { color:#c62828; } .trend-box.down h4 { color:#1b5e20; }
+  .trend-box ul { padding-left:18px; }
+  .trend-box li { margin:5px 0; color:#444; }
+
+  .platform-table-wrap { overflow-x:auto; margin:12px 0; }
+  table { width:100%; border-collapse:collapse; font-size:13.5px; min-width:640px; }
+  th { background:#1a237e; color:white; padding:11px 14px; text-align:left; font-weight:600; white-space:nowrap; }
+  td { padding:10px 14px; border-bottom:1px solid #f0f0f0; vertical-align:top; }
+  tr:nth-child(even) td { background:#fafbff; }
+  tr:hover td { background:#f0f4ff; }
+  td.jd { font-weight:600; color:#c62828; }
+
+  .rec-list { display:flex; flex-direction:column; gap:12px; margin:8px 0; }
+  .rec { display:flex; gap:14px; align-items:flex-start; background:#f8f9fe; border-radius:10px; padding:14px 18px; font-size:14px; }
+  .rec-num { background:#1a237e; color:white; width:28px; height:28px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:700; flex-shrink:0; margin-top:1px; }
+  .rec-num.urgent { background:#c62828; }
+  .rec-content strong { display:block; font-size:14px; margin-bottom:4px; color:#1a237e; }
+  .rec-content span { color:#444; }
+
+  .alert-box { background:#fff3e0; border:1.5px solid #ffb74d; border-radius:10px; padding:16px 20px; font-size:14px; margin:14px 0; }
+  .alert-box strong { color:#e65100; display:block; margin-bottom:6px; }
+
+  .callout { border-radius:10px; padding:16px 20px; margin:14px 0; font-size:14px; line-height:1.75; }
+  .callout.blue { background:#e3f2fd; border-left:4px solid #1565c0; }
+  .callout.red  { background:#fdecea; border-left:4px solid #c62828; }
+  .callout.green { background:#e8f5e9; border-left:4px solid #2e7d32; }
+  .callout strong { display:block; margin-bottom:5px; font-size:15px; }
+
+  /* 数据亮点条 */
+  .data-strip {
+    display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin:16px 0;
+  }
+  .data-item { background:#f8f9fe; border-radius:10px; padding:14px 16px; text-align:center; border-top:3px solid #1a237e; }
+  .data-item .dv { font-size:22px; font-weight:700; color:#1a237e; }
+  .data-item .dl { font-size:12px; color:#888; margin-top:4px; }
+
+  .source-list { font-size:12px; color:#999; margin-top:14px; line-height:2.2; }
+  .source-list a { color:#1565c0; text-decoration:none; }
+  .source-list a:hover { text-decoration:underline; }
+
+  .footer { text-align:center; padding:28px; color:#aaa; font-size:12px; line-height:2; }
+
+  @media (max-width:640px) {
+    .header { padding:28px 20px; } .summary-bar { padding:16px 20px; gap:20px; }
+    .card { padding:22px 18px; } .trend-grid,.data-strip { grid-template-columns:1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- 大促提示横幅 -->
+<div class="promo-banner">
+  🛍️ 618大促进行中（5月15日已开启，6月20日截止）· 大促期间假货风险较平日上升约3倍，本周报已纳入大促专项监测
+</div>
+
+<!-- 头部 -->
+<div class="header">
+  <div class="header-top">
+    <div>
+      <div class="header-logo">京东合规假货治理部 · 内部参考文件</div>
+      <h1>京东假货舆情周报</h1>
+      <div class="subtitle">外部舆情监测 · 趋势分析 · 平台对比 · 治理建议</div>
+    </div>
+    <div class="header-meta">
+      <strong>第 21 周报（更新版）</strong><br>
+      监测周期：2026-05-19 ～ 2026-05-25<br>
+      发布日期：2026年5月25日（周三）<br>
+      特别标注：618大促专项监测期
+    </div>
+  </div>
+</div>
+
+<!-- 摘要栏 -->
+<div class="summary-bar">
+  <div class="summary-item">
+    <div class="val red">3</div><div class="lbl">本周重点事件</div>
+  </div>
+  <div class="summary-item">
+    <div class="val orange">2</div><div class="lbl">高热度（全网扩散）</div>
+  </div>
+  <div class="summary-item">
+    <div class="val blue">贵金属/全球购</div><div class="lbl">高发品类</div>
+  </div>
+  <div class="summary-item">
+    <div class="val red">↑ 大促拉升</div><div class="lbl">假货投诉趋势</div>
+  </div>
+  <div class="summary-item">
+    <div class="val green">史上最早618</div><div class="lbl">5月15日已开启</div>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- 一、本周核心数据 -->
+  <div class="card">
+    <h2>一、本周核心数据一览</h2>
+    <div class="data-strip">
+      <div class="data-item">
+        <div class="dv">10,103</div>
+        <div class="dl">截至4月23日黑猫投诉量<br>完成仅1,711件（17%）</div>
+      </div>
+      <div class="data-item">
+        <div class="dv">11万+</div>
+        <div class="dl">京东全球购年累计投诉<br>有效解决率 56.38%</div>
+      </div>
+      <div class="data-item">
+        <div class="dv">23万件</div>
+        <div class="dl">2025年平台主动下架<br>疑似假货商品数量</div>
+      </div>
+      <div class="data-item">
+        <div class="dv">87.6%</div>
+        <div class="dl">2025年消费者假货<br>维权胜诉率</div>
+      </div>
+    </div>
+    <div class="callout blue">
+      <strong>618大促期间特别提示</strong>
+      2026年618于5月15日全面开启，为史上最早。根据历年大促规律，大促期间假货投诉量较日常上升2～3倍，贵金属、奢侈品、化妆品、电子产品为高风险品类，本周报对上述品类实施加密监控。
+    </div>
+  </div>
+
+  <!-- 二、本周重点舆情 -->
+  <div class="card">
+    <h2>二、本周重点舆情事件</h2>
+
+    <div class="event-list">
+
+      <!-- 事件1：银条乱象 -->
+      <div class="event high">
+        <div class="event-header">
+          <span class="tag red">🔴 高热度</span>
+          <span class="tag orange">贵金属</span>
+          <span class="tag purple">深度调查</span>
+          <span class="tag yellow">⚠️ 5月新增</span>
+          <span class="event-title">京东平台假冒银条乱象深度调查持续发酵</span>
+        </div>
+        <div class="event-body">
+          财会信报（2026年4月）深度调查报道持续扩散：消费者2025年12月在京东4家不同店铺，合计花费约 <strong>8,200元</strong>购入投资银条，经国家级检测机构检验，全部为锌合金，<strong>含银量低于1%</strong>，几乎一分钱银都没有。<br><br>
+          调查揭示三大系统性问题：
+          <ul style="padding-left:18px;margin-top:8px;line-height:2;">
+            <li>四家涉事商家均已<strong>跑路注销</strong>，消费者维权彻底受阻</li>
+            <li>银条品类门槛极低，商家无需贵金属资质即可上架销售</li>
+            <li>平台"假一赔三"承诺落地困难，消费者实际赔付比例极低</li>
+          </ul>
+          <br>本周舆情热度：媒体二次跟进报道，已触发多起类似受害者在黑猫平台集体维权。
+        </div>
+        <div class="event-footer">
+          来源：财会信报（2026-04-16）· 二次扩散：黑猫投诉、微博 · 本周持续发酵
+        </div>
+      </div>
+
+      <!-- 事件2：618大促假货 -->
+      <div class="event high">
+        <div class="event-header">
+          <span class="tag red">🔴 高热度</span>
+          <span class="tag yellow">618大促</span>
+          <span class="tag blue">投诉量激增</span>
+          <span class="event-title">618开启后假货投诉量环比大幅上升，化妆品/电子品类突出</span>
+        </div>
+        <div class="event-body">
+          5月15日618正式启动以来，黑猫投诉、消费保等平台涉京东的商品质量投诉量出现明显爬升。从投诉内容分类来看，本周主要集中于：
+          <ul style="padding-left:18px;margin-top:8px;line-height:2;">
+            <li><strong>化妆品</strong>：大促低价促销款与日常款成分不同，疑似专供次品</li>
+            <li><strong>电子配件</strong>：充电器、数据线标注大品牌但实为山寨，618大量铺货</li>
+            <li><strong>食品/保健品</strong>：临期品、仿冒品借大促流量混入，投诉中包含多起贵金属相关（延续银条事件）</li>
+          </ul>
+          <br>投诉解决率偏低（17%），引发消费者在社交媒体集中发酵。
+        </div>
+        <div class="event-footer">
+          来源：黑猫投诉（截至2026-04-23数据）· 消费保平台 · 微博话题 #618假货#
+        </div>
+      </div>
+
+      <!-- 事件3：新监管政策 -->
+      <div class="event low">
+        <div class="event-header">
+          <span class="tag blue">🔵 政策利好</span>
+          <span class="tag green">监管新规</span>
+          <span class="event-title">《网络交易平台规则监督管理办法》2月落地，算法负面清单5月实施</span>
+        </div>
+        <div class="event-body">
+          两项监管新规对假货治理形成双重加码：<br><br>
+          ① <strong>《网络交易平台规则监督管理办法》</strong>（2026年2月1日起施行）：建立监管部门与平台协同处置制度，平台须在规定时限内响应监管处置指令；平台对商家的"封店不封人"漏洞需承担连带责任。<br><br>
+          ② <strong>《生活服务类平台算法负面清单》</strong>（2026年5月8日实施）：明确 AI 生成人物图像、AI主播用于假货推广的需强制标识，并持续向消费者提示，为 AI 假图/假货直播治理提供了法规依据。
+        </div>
+        <div class="event-footer">
+          来源：国家网信办、市场监管总局 · 生效日期：2026-02-01 / 2026-05-08
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 三、趋势分析 -->
+  <div class="card">
+    <h2>三、假货问题趋势分析</h2>
+
+    <h3>3.1 上升 vs 改善趋势</h3>
+    <div class="trend-grid">
+      <div class="trend-box up">
+        <h4>↑ 上升趋势（重点关注）</h4>
+        <ul>
+          <li><strong>贵金属品类假货</strong>：银条/金条造假系统性暴露，上架门槛极低，为当前最高风险品类</li>
+          <li><strong>618大促假货投诉</strong>：大促流量拉动假货涌入，化妆品/电子配件为重灾区</li>
+          <li><strong>AI假图辅助造假</strong>：AI生成商品主图以假乱真，传统审核难以识别，2026年新型威胁</li>
+          <li><strong>投诉解决率下降</strong>：黑猫平台完成率仅17%，舆论对平台处置能力不满情绪上升</li>
+        </ul>
+      </div>
+      <div class="trend-box down">
+        <h4>↓ 改善趋势（继续巩固）</h4>
+        <ul>
+          <li><strong>自营渠道假货</strong>：2025年主动下架23万件，消费者胜诉率87.6%，自营信任度稳定</li>
+          <li><strong>仅退款滥用</strong>：平台已调整仅退款规则，消费者恶意退货减少</li>
+          <li><strong>监管压力</strong>：新规落地提升平台合规积极性，行业整体假货治理在加强</li>
+          <li><strong>AI识别能力</strong>：平台技术侧投入增加，算法识别假货效率持续提升</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>3.2 618大促期间结构性风险</h3>
+    <div class="alert-box">
+      <strong>⚠️ 大促期间特有风险模式（需专项应对）</strong>
+      ① <strong>大促专供次品混入</strong>：商家针对大促定制低成本"特供款"，外包装与正品相同但内容物缩水<br>
+      ② <strong>低价引流伪正品</strong>：以极低价格吸引大促流量，商品实为高仿，引发大规模投诉后关店<br>
+      ③ <strong>刷单堆高评价</strong>：大促前集中刷单提高排名，掩盖真实商品质量风险<br>
+      ④ <strong>物流延误掩盖假货</strong>：大促物流拥堵期，商家以"物流问题"拖延消费者维权时效
+    </div>
+
+    <h3>3.3 结构性根因</h3>
+    <div class="rec-list">
+      <div class="rec">
+        <div class="rec-num">①</div>
+        <div class="rec-content">
+          <strong>贵金属品类零门槛上架</strong>
+          <span>银条、金条等高单价投资品无需行业资质即可在平台上架，商家成本极低，造假收益极高，吸引大量不法商家涌入。</span>
+        </div>
+      </div>
+      <div class="rec">
+        <div class="rec-num">②</div>
+        <div class="rec-content">
+          <strong>"封店不封人"持续存在</strong>
+          <span>涉假商家关店注销后，可在数日内重新注册新店继续经营，平台缺乏跨账号商家实体关联识别机制，惩处效果大幅削弱。</span>
+        </div>
+      </div>
+      <div class="rec">
+        <div class="rec-num">③</div>
+        <div class="rec-content">
+          <strong>投诉处置效率严重不足</strong>
+          <span>黑猫平台投诉完成率仅17%，平台投诉处置资源配置与大促期间投诉量激增严重失配，造成舆情负面二次发酵。</span>
+        </div>
+      </div>
+      <div class="rec">
+        <div class="rec-num">④</div>
+        <div class="rec-content">
+          <strong>AI造假技术迭代快于审核能力</strong>
+          <span>2026年AI生成假图技术成熟，商家可低成本生成高质量商品展示图，传统图像审核规则难以跟上技术迭代速度。</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 四、平台对比 -->
+  <div class="card">
+    <h2>四、同类问题在其他平台的现状与处理方式</h2>
+
+    <div class="platform-table-wrap">
+      <table>
+        <tr>
+          <th>平台</th>
+          <th>当前假货问题现状</th>
+          <th>核心治理举措</th>
+          <th>2026年最新动作</th>
+          <th>对京东的借鉴价值</th>
+        </tr>
+        <tr>
+          <td><strong>淘宝天猫</strong></td>
+          <td>投诉量大但机制相对成熟；账号诚信体系建立较早</td>
+          <td>账号诚信体系跨店关联；异常退货AI识别；假一赔三落地率较高</td>
+          <td>账号诚信体系为商家挽回损失超40亿；侦破恶意薅羊毛案34起；全面取消仅退款默认</td>
+          <td class="jd">★★★ 账号诚信体系直接解决"封店不封人"，最值得借鉴</td>
+        </tr>
+        <tr>
+          <td><strong>拼多多</strong></td>
+          <td>2026 Q1投诉占比全网第一（38.31%）；被罚15.2亿元</td>
+          <td>AI黑名单拦截高频退款账号；建立"商保会"申诉机制；4月22日废止仅退款</td>
+          <td>市场监管总局重罚15.2亿（七平台最高）；AI黑名单系统上线拦截职业羊毛党</td>
+          <td class="jd">★★ AI黑名单拦截机制可参考；拼多多低价生态与京东差异较大</td>
+        </tr>
+        <tr>
+          <td><strong>抖音电商</strong></td>
+          <td>2026 Q1投诉占比全网第二（36.03%）；直播假货突出</td>
+          <td>清退违规茶类商家600+；处置侵权仿冒达人账号1.1万个；AIGC假图识别测试中</td>
+          <td>张一鸣亲批仅退款整改；AIGC内容真实性审核系统上线测试；快手同步清退大批违规商家</td>
+          <td class="jd">★★★ AIGC假图识别方向与京东AI造假新威胁高度吻合，重点跟踪</td>
+        </tr>
+        <tr>
+          <td><strong>小红书</strong></td>
+          <td>奢侈品/贵金属"鉴别"内容泛滥，成假货信息传播渠道</td>
+          <td>官方鉴别服务上线；限制非认证账号发布奢侈品鉴别内容</td>
+          <td>与品牌官方合作建立白名单鉴别体系</td>
+          <td class="jd">★★ 贵金属/奢侈品官方鉴别合作模式，可补充京东全球购背书</td>
+        </tr>
+      </table>
+    </div>
+
+    <h3>618大促期各平台假货治理对比</h3>
+    <div class="callout green">
+      <strong>行业整体趋势：大促期间监管加码</strong>
+      《网络交易平台规则监督管理办法》2月落地后，今年618各平台均加强了大促前商家资质审核。抖音宣布618期间新增商家须完成"正品承诺"认证；淘宝启动大促专项抽检；拼多多加大商家保证金要求。<br><br>
+      京东当前行动：618期间加强自营商品抽检；全球购新增商家"100%正品承诺"弹窗。<strong>但贵金属品类专项治理措施仍缺位。</strong>
+    </div>
+  </div>
+
+  <!-- 五、本周治理建议 -->
+  <div class="card">
+    <h2>五、本周治理建议（优先级排序）</h2>
+
+    <div class="rec-list">
+      <div class="rec">
+        <div class="rec-num urgent">P1</div>
+        <div class="rec-content">
+          <strong>【大促急办】贵金属品类专项整治：上架资质管控 + 抽检机制</strong>
+          <span>针对银条假货系统性问题，建议618期间立即启动：① 贵金属品类强制上架资质（营业执照须含贵金属经营范围）；② 抽取在售银条/金条送第三方机构检测；③ 发现假货商家立即下架+启动"假一赔三"平台先行赔付，不依赖商家响应。</span>
+        </div>
+      </div>
+      <div class="rec">
+        <div class="rec-num urgent">P1</div>
+        <div class="rec-content">
+          <strong>【大促急办】618投诉响应提速：17%完成率不可接受</strong>
+          <span>当前黑猫投诉完成率仅17%，大促期间投诉量将继续激增。建议：① 大促期间投诉响应SLA由5天压缩至24小时；② 增配专项客服资源处理大促假货投诉；③ 高单价商品投诉（≥500元）由人工直接跟进，不走自动化流程。</span>
+        </div>
+      </div>
+      <div class="rec">
+        <div class="rec-num">P2</div>
+        <div class="rec-content">
+          <strong>【重要】建立商家实体关联识别能力，根治"封店不封人"</strong>
+          <span>通过营业执照法人、银行账号、手机号、设备指纹等多维关联，识别注销后重新注册的问题商家，对关联账号实施连带管控，新规也已为此提供法规依据。</span>
+        </div>
+      </div>
+      <div class="rec">
+        <div class="rec-num">P3</div>
+        <div class="rec-content">
+          <strong>【重要】AIGC假图检测能力建设提速，对接新算法负面清单</strong>
+          <span>5月8日落地的算法负面清单明确了AI假图需标识的监管要求，建议技术部门Q2内完成AI生成商品主图检测能力上线，重点覆盖贵金属、全球购、化妆品三个高风险品类。</span>
+        </div>
+      </div>
+      <div class="rec">
+        <div class="rec-num">P4</div>
+        <div class="rec-content">
+          <strong>【618后跟进】贵金属/全球购引入官方品牌鉴别合作</strong>
+          <span>参考小红书与品牌方合作的白名单鉴别体系，与国际贵金属认证机构、奢侈品品牌方建立官方鉴别通道，为全球购和投资贵金属品类提供第三方背书，618后推进。</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 信息来源 -->
+  <div class="card">
+    <h2>信息来源</h2>
+    <div class="source-list">
+      <p>本报告基于以下公开信息来源整理，内容经编辑加工，仅供内部决策参考：</p>
+      <ul style="padding-left:18px;">
+        <li><a href="http://www.ckxb.cn/caijing/20260416/46203.html" target="_blank">财会信报（2026-04-16）：京东平台假冒银条乱象调查：合金掺假冒充足银，商家跑路消费者维权受阻</a></li>
+        <li><a href="https://finance.sina.cn/2026-03-31/detail-inhsxeik3081053.d.html" target="_blank">新浪财经：京东卡地亚"罗生门"，年投诉超11万件（背景参考）</a></li>
+        <li><a href="https://www.elawcn.com/rule/2026/0110/1720.html" target="_blank">《网络交易平台规则监督管理办法》全文（2026-02-01施行）</a></li>
+        <li><a href="https://www.cac.gov.cn/2026-05/08/c_1779979790806325.htm" target="_blank">网信办：《生活服务类平台算法负面清单（试行）》实施取得初步成效（2026-05-08）</a></li>
+        <li><a href="https://news.qq.com/rain/a/20260519A09QGF00" target="_blank">腾讯新闻：今年的电商大促风向变了：618正在被AI重构（2026-05-19）</a></li>
+        <li><a href="https://news.qq.com/rain/a/20260418A03FHH00" target="_blank">腾讯新闻：35.97亿史诗级罚单，拼多多被罚最多（2026-04-18）</a></li>
+        <li><a href="https://caifuhao.eastmoney.com/news/20260401164410762336010" target="_blank">东方财富：拼多多砸千亿"新拼姆"，抖音快手清退违规商家（2026-04-01）</a></li>
+        <li><a href="https://news.qq.com/rain/a/20260131A05P5900" target="_blank">腾讯新闻：抖音对"仅退款"下手了（2026-01-31）</a></li>
+        <li><a href="https://m.tech.china.com/redian/2026/0514/052026_1868118.html" target="_blank">中华网：2026年618正式开始！京东、淘宝时间表全变了（2026-05-14）</a></li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  京东合规假货治理部 · 假货舆情周报 · 第21期（更新版）· 2026年5月25日<br>
+  本报告每周三自动发布，内容来源于公开舆情，仅供内部决策参考，请勿对外传播
+</div>
+
+</body>
+</html>
